@@ -1,0 +1,139 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>MusicMax • {{ artist.name }}</title>
+{% endblock %}
+{% block back %}
+    <a href="{{ url_for('index') }}" class="back_page"><i class="fa-solid fa-chevron-left"
+                                                          style="opacity: 1;font-size: 40px;"></i></a>
+{% endblock %}
+{% block header_info %}
+    <div class="header_nav">
+        <div class="singer_img">
+            <img src="{{ artist.photo }}" alt="">
+        </div>
+        <p>{{ artist.name }}</p>
+    </div>
+    <a href="{{ url_for('user') }}">
+        <div class="user_now">
+            <p>{{ user_now.username }}</p>
+            <img src="{{ user_now.photo }}" alt="">
+        </div>
+    </a>
+    <div class="header_info" style="margin-top: 0;padding: 0;gap: 0">
+        <div class="header_banner" style="background-image: url('{{ artist.photo }}');">
+            <div class="border" style="border-right: none;border-bottom: none;top: 40px;left: 40px;"></div>
+            <div class="border" style="border-top: none;border-left: none;bottom: 40px;right: 40px;"></div>
+            <div class="banner_info">
+                <text>Singer:</text>
+                <p style="color: var(--color_primary)">{{ artist.name }}</p>
+                <text>{{ length_songs }} - tracks</text>
+            </div>
+        </div>
+        <div class="singer_info">
+            <div class="singer_tracks">
+                <p style="font-size: 48px;font-family: var(--font_gubia); color: var(--black);">Popular tracks</p>
+                <ol>
+                    {% for song in artist.songs %}
+                        <li>
+                            <div class="song_id_for_play" style="display: none;">{{ song.id }}</div>
+                            <div class="li_info">
+                                <div class="music_number">
+                                    <p style="font-size: 40px">1</p>
+                                    <i class="fa-solid fa-play" style="font-size: 20px"></i>
+                                    <div class="box_loading_big">
+                                        <div class="box_loading"></div>
+                                    </div>
+                                </div>
+                                <img src="{{ song.photo }}" alt="">
+                                <p style="margin-left: 25px;">{{ song.name }}</p>
+                            </div>
+                            <div class="li_other">
+                                <text style="width: 100px;text-align: center">{{ song.like }}</text>
+                                <div class="heart">
+                                    {% if song in user_now.song_like %}
+                                        <a href="{{ url_for('dislike_song', song_id=song.id) }}">
+                                            <i class="fa-solid fa-heart"></i></a>
+                                    {% else %}
+                                        <a href="{{ url_for('love_song', song_id=song.id) }}">
+                                            <i class="fa-regular fa-heart"></i></a>
+                                    {% endif %}
+                                </div>
+                                <text>{{ song.duration }}</text>
+                            </div>
+                            <div class="add_song_in_list_btn" style="position:absolute;right: 20px;">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+                {% if length_songs > 5 %}
+                    <text style="margin-top: 15px;font-size: 24px">All...</text>
+                {% endif %}
+            </div>
+            <div class="singer_playlist">
+                {% if artist.playlist %}
+                    <div class="title_row">
+                        <p style="font-size: 48px">Playlist</p>
+                        <text style="font-size: 36px;">Author: {{ artist.name }}</text>
+                    </div>
+                    {% for playlist in artist.playlist %}
+                        <a href="{{ url_for('playlist', play_list_id=playlist.id) }}">
+                            <div class="playlist_box">
+                                <div class="playlist_img">
+                                    <img src="{{ playlist.photo }}" alt="">
+                                </div>
+                                <div class="playlist_name">
+                                    {{ playlist.name }}
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% if artist.album %}
+                <p style="margin-top: 100px;padding: 0 30px 0 0;width: 100%; font-size: 48px; margin-bottom: 15px;display: flex; justify-content: space-between">
+                    Albums
+                    <span class="next_prev"><i class="fa-solid fa-chevron-left"
+                                               style="opacity: 1;font-size: 40px;margin-right: 15px;"></i><i
+                            class="fa-solid fa-chevron-right" style="opacity: 1;font-size: 40px"></i></span>
+                </p>
+            {% endif %}
+            <div class="singer_album">
+                {% for album in artist.album %}
+                    <a href="{{ url_for('album', album_id=album.id) }}">
+                        <div class="album_box">
+                            <div class="album_img">
+                                <img src="{{ album.photo }}" alt="">
+                            </div>
+                            <div class="album_name">
+                                <p>{{ album.name }}</p>
+                                <text>{{ album.date }} • Album</text>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            {% for singer in all_user %}
+                {% if singer.category == artist.category %}
+                    <p style="color: var(--color_primary);margin-top: 100px;padding-right: 25px;width: 100%; font-size: 48px; margin-bottom: 15px;display: flex; justify-content: space-between">
+                        Singers<span class="next_prev"><i class="fa-solid fa-chevron-left"
+                                                          style="opacity: 1;font-size: 40px;margin-right: 15px;"></i><i
+                            class="fa-solid fa-chevron-right" style="opacity: 1;font-size: 40px"></i></span></p>
+                    <div class="singer_album"">
+                        <a href="{{ url_for('singer', singer_id=singer.id) }}">
+                            <div class="playlist_box">
+                                <div class="playlist_img">
+                                    <img src="{{ singer.photo }}" alt="{{ singer.username }}"
+                                         style="border-radius: 50%">
+                                </div>
+                                <div class="playlist_name">
+                                    {{ singer.name }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

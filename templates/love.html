@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>MusicMax • {{ user_now.name }}</title>
+{% endblock %}
+{% block back %}
+    <a href="{{ url_for('index') }}" class="back_page"><i class="fa-solid fa-chevron-left"
+                                                          style="opacity: 1;font-size: 40px;"></i></a>
+{% endblock %}
+{% block header_info %}
+    <div class="header_nav">
+        <div class="singer_img">
+            <img src="{{ user_now.photo }}" alt="">
+        </div>
+        <p>Your Love Music</p>
+    </div>
+    <a href="{{ url_for('user') }}">
+        <div class="user_now">
+            <p>{{ user_now.username }}</p>
+            <img src="{{ user_now.photo }}" alt="">
+        </div>
+    </a>
+    <div class="header_info" style="margin-top: 0;padding: 0;display: block">
+        <div class="playlist_banner" style="background: url('{{ user_now.photo }}') no-repeat; background-size: cover;">
+            <div class="playlist_banner_info">
+                <text style="font-size: 40px; color: var(--color_primary)">Playlist</text>
+                <p>Your Love Music</p>
+                <div class="album_info-row" style="width: 35%;">
+                    <img src="{{ user_now.photo }}" alt="">
+                    <text style="color: var(--color_primary)">{{ user_now.name }}</text>
+                    <text style="color: var(--color_primary)">•</text>
+                    <text style="color: var(--color_primary)">{{ length_songs }} tracks</text>
+                </div>
+            </div>
+        </div>
+        <div class="playlist_info">
+            <div class="playlist_info_row">
+                <div class="li_info" style="color: var(--secondary)">
+                    <div class="music_number">
+                        #
+                    </div>
+                    <p style="font-size: 40px">Name</p>
+                </div>
+                <p style="font-size: 40px; margin-left: 200px;">Album</p>
+                <p style="font-size: 40px">Like</p>
+                <i class="fa-regular fa-clock" style="opacity: 1;color: var(--secondary); font-size: 25px"></i>
+            </div>
+            <ol>
+                {% for song in user_love %}
+                    <li>
+                        <div class="song_id_for_play" style="display: none;">{{ song.id }}</div>
+                        <div class="li_info">
+                            <div class="music_number" style="color: black">
+                                <p style="font-size: 40px">1</p>
+                                <i class="fa-solid fa-play" style="font-size: 20px"></i>
+                                <div class="box_loading_big">
+                                    <div class="box_loading"></div>
+                                </div>
+                            </div>
+                            <img src="{{ song.photo }}" alt="">
+                            <div class="playlist_li_info_name">
+                                <p style="margin-left: 25px;color: var(--black)">{{ song.name }}</p>
+                                <p style="font-size: 16px;margin-left: 25px;color: #646464">{{ song.user.name }}</p>
+                            </div>
+                        </div>
+                        <div class="li_other">
+                            <text style="width: 380px;text-align: center; color: #646464;">{{ song.album.name }}</text>
+                            <text style="width: 300px;text-align: center;color: #646464;">{{ song.like }}</text>
+                            <div class="heart">
+                                {% if song in user_now.song_like %}
+                                    <a href="{{ url_for('dislike_song', song_id=song.id) }}"><i
+                                            class="fa-solid fa-heart" style="margin-right: 70px;"></i></a>
+                                {% else %}
+                                    <a href="{{ url_for('love_song', song_id=song.id) }}"><i class="fa-regular fa-heart"
+                                                                                             style="margin-right: 70px;"></i></a>
+                                {% endif %}
+                            </div>
+                            <text style="color: #646464">{{ song.duration }}</text>
+                        </div>
+                        <div class="add_song_in_list_btn" style="position:absolute;right: 20px;padding: 1px;">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <div class="absolute_add_song_box">
+                                <div class="add_song_div" style="width: 100%;">
+                                    {% if user_now.playlist %}
+                                        {% for check_list in user_now.playlist %}
+                                            {% if song in check_list.songs %}
+                                            {% else %}
+                                                <a href="{{ url_for('add_playlist_song', p_id=check_list.id, s_id=song.id) }}"><i
+                                                        class="fa-solid fa-plus"
+                                                        style="border: none;font-size: 25px;margin: 0;"></i>
+                                                    <p>{{ check_list.name }}</p></a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endblock %}

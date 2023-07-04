@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MusicMax • {{ user_now.username }}</title>
+    <link rel="icon" href="/static/img/web_img/logo.png">
+    <link rel="stylesheet" href="/static/style/style.css">
+</head>
+<body style="align-items: flex-start;flex-direction: column">
+<div class="navbar_admin">
+    <a href="{{ url_for('index') }}">
+        <div class="logo">
+            <img src="/static/img/web_img/logo.png" alt="" style="user-select: none;">
+            <p>usicMAX</p>
+        </div>
+    </a>
+    <div class="add_genre" style="z-index: 10">
+        <button style="font-size: 30px;margin-left: 50px; margin-right: -100px;background: #fff;color: var(--color_primary)">
+            Add Genre
+        </button>
+    </div>
+    <form action="{{ url_for('login') }}" method="post">
+        <input type="text" name="username" maxlength="15" placeholder="Username" class="username">
+        <input type="text" name="password" maxlength="25" placeholder="Password" class="password">
+        <button>Log in</button>
+    </form>
+    <a href="{{ url_for('user') }}">
+        <div class="user_now" style="position:relative;color: #000;top: 0;right: 0;">
+        <p>{{ user_now.username }}</p>
+        <img src="{{ user_now.photo }}" alt="">
+    </div>
+    </a>
+</div>
+<div class="table_user_info">
+    <div class="table_info" style="font-size: 35px">
+        <p style="width: 5%;justify-content: center">#</p>
+        <p>Name</p>
+        <p>Password</p>
+        <p>Nicname</p>
+        <p style="border-right: none;width: 10%;">Type</p>
+    </div>
+    {% for user in all_user %}
+        <div class="li_for_info" style="cursor: pointer;">
+            <p style="width: 5%;justify-content: center" class="number_user_for_admin">1</p>
+            <div class="user_info_for_admin" style="padding-right: 0;">
+                <img src="{{ user.photo }}" alt="">
+                <p>{{ user.name }}</p>
+            </div>
+            <p class="password_for_input">{{ user.password }}</p>
+            <p class="name_for_input">{{ user.username }}</p>
+            {% if user.password == 'MusicMAX-web-programing' %}
+                <p style="border-right: none;width: 10%;" class="type_user">Admin</p>
+            {% else %}
+                {% if user.artist %}
+                    <p style="border-right: none;width: 10%;" class="type_user">Singer</p>
+                {% else %}
+                    <p style="border-right: none;width: 10%;" class="type_user">User</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}
+{#    <form action="{{ url_for() }}"></form>#}
+</div>
+<div class="modal_window_for_add_genre">
+    <div class="add_genre_box">
+        <i class="fa-solid fa-xmark" style="opacity: 1;"></i>
+        <h1>Add genre</h1>
+        <form action="{{ url_for('add_genre') }}" method="post" style="width: auto;height: auto;">
+            <input type="text" name="name" placeholder="Add genre">
+            <button>Add</button>
+        </form>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/d17442df75.js" crossorigin="anonymous"></script>
+<script>
+    let xmarkGenre = document.querySelector('.fa-xmark'),
+        modalWindowGener = document.querySelector('.modal_window_for_add_genre'),
+        addBtnGener = document.querySelector('.add_genre button')
+
+    addBtnGener.addEventListener('click', () => {
+        modalWindowGener.style.display = 'flex'
+    })
+
+    xmarkGenre.addEventListener('click', () => {
+        modalWindowGener.style.display = 'none'
+    })
+
+    let number_user_check = document.querySelectorAll('.number_user_for_admin')
+
+    number_user_check.forEach((number, index) => {
+        number.innerHTML = `${index + 1}`
+    })
+
+    let username = document.querySelector('.username'),
+        password = document.querySelector('.password'),
+        li_for_info = document.querySelectorAll('.li_for_info')
+
+    li_for_info.forEach((li, index) => {
+        li.addEventListener('click', () => {
+            let name = document.querySelectorAll('.name_for_input'),
+                pass = document.querySelectorAll('.password_for_input')
+
+            username.value = name[index].innerHTML
+            password.value = pass[index].innerHTML
+        })
+    })
+</script>
+</body>
+</html>

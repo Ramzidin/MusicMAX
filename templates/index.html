@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/style/loader.css">
+    {% block title %}
+        <title>MusicMax • {{ user_now.username }}</title>
+    {% endblock %}
+    <link rel="icon" href="/static/img/web_img/logo.png">
+    <link rel="stylesheet" href="/static/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"
+            integrity="sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div class="loader_box">
+    <div class="socket">
+        <div class="gel center-gel">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c1 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c2 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c3 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c4 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c5 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c6 r1">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+
+        <div class="gel c7 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+
+        <div class="gel c8 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c9 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c10 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c11 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c12 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c13 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c14 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c15 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c16 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c17 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c18 r2">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c19 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c20 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c21 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c22 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c23 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c24 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c25 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c26 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c28 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c29 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c30 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c31 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c32 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c33 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c34 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c35 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c36 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c37 r3">
+            <div class="hex-brick h1"></div>
+            <div class="hex-brick h2"></div>
+            <div class="hex-brick h3"></div>
+        </div>
+    </div>
+</div>
+{# Loader codes #}
+{% block back %}
+{% endblock %}
+<section id="navbar">
+    <div class="nav_logo">
+        <div class="logo">
+            <img src="/static/img/web_img/logo.png" alt="" style="user-select: none;">
+            <p>usicMAX</p>
+        </div>
+    </div>
+    <div class="nav_info">
+        <a href="{{ url_for('love') }}">
+            <div class="nav_list_hover nav_list">
+                <img src="{{ user_now.photo }}" alt="" class="nav_img">
+                <div class="nav_list_info">
+                    <div class="list_name">
+                        Love Music
+                    </div>
+                    <p>Love • {{ user_now.len_love_song }} tracks</p>
+                </div>
+            </div>
+        </a>
+        {% for playlist in user_now.playlist %}
+            <a href="{{ url_for('playlist', play_list_id=playlist.id) }}">
+                <div class="nav_list">
+                    <img src="{{ playlist.photo }}" alt="" class="nav_img">
+                    <div class="nav_list_info">
+                        <div class="list_name">
+                            {{ playlist.name }}
+                        </div>
+                        <p>Playlist • {{ playlist.length_song }} tracks</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="nav_username">{{ user_now.username }}</div>
+    <div class="nav_gradient"></div>
+</section>
+<header>
+    {% block header_info %}
+        <div class="user_navbar">
+            <div class="user_navbar_row">
+                <p>For you</p>
+                <div class="navbar_line"></div>
+                <a href="{{ url_for('user') }}">
+                    <div class="navbar_user_info">
+                        <p>{{ user_now.username }}</p>
+                        <img src="{{ user_now.photo }}" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="header_info">
+            <div class="singer_album">
+                {% for singer in singers %}
+                    <a href="{{ url_for('singer', singer_id=singer.id) }}">
+                        <div class="playlist_box">
+                            <div class="playlist_img">
+                                <img src="{{ singer.photo }}" alt="{{ singer.username }}" style="border-radius: 50%">
+                            </div>
+                            <div class="playlist_name">
+                                {{ singer.name }}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="singer_album">
+                {% for playlist in all_pl %}
+                    <a href="{{ url_for('playlist', play_list_id=playlist.id) }}">
+                        <div class="playlist_box">
+                            <div class="playlist_img">
+                                <img src="{{ playlist.photo }}" alt="">
+                            </div>
+                            <div class="album_name">
+                                <p>{{ playlist.name }}</p>
+                                <text style="font-size: 23px">{{ playlist.date }} • Playlist</text>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="singer_album">
+                {% for album in all_ab %}
+                    <a href="{{ url_for('album', album_id=album.id) }}">
+                        <div class="album_box">
+                            <div class="album_img">
+                                <img src="{{ album.photo }}" alt="">
+                            </div>
+                            <div class="album_name">
+                                <p>{{ album.name }}</p>
+                                <text>{{ album.date }} • Album</text>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
+</header>
+<section id="player">
+    <audio src=""></audio>
+    <div class="player_author">
+        <img src="/static/img/web_img/gl.jpg" alt="" class="player_img">
+        <div class="player_name">
+            <text>MusicMAX</text>
+            <p style="display: flex">by <b style="color: var(--color_primary); margin-left: 4px;">Ramzidin</b></p>
+        </div>
+    </div>
+    <div class="player_control">
+        <div class="controllers">
+            <i class="fa-solid fa-shuffle" style="font-size: 27px; margin-right: 20px;"></i>
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-regular fa-circle-play" style="font-size: 40px"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat" style="font-size: 27px;margin-left:20px;"></i>
+        </div>
+        <div class="player_range">
+            <div class="time_row">
+                <div class="start_time">
+                    0:00
+                </div>
+                <div class="end_time">
+                    0:00
+                </div>
+            </div>
+            <div class="input_range">
+                <input type="range" max="780" min="0">
+                <div class="range"></div>
+            </div>
+        </div>
+    </div>
+    <div class="player_other">
+        <div class="heart_player"><i class="fa-regular fa-heart"></i></div>
+        <i class="fa-solid fa-volume-high"></i>
+        <div class="volume_range">
+            <input type="range" max="120" min="0">
+            <div class="rangeV"></div>
+        </div>
+    </div>
+</section>
+<script src="https://kit.fontawesome.com/d17442df75.js" crossorigin="anonymous"></script>
+<script src="/static/js/script.js"></script>
+<script src="/static/js/player.js"></script>
+<script src="/static/js/add_music.js"></script>
+</body>
+</html>
