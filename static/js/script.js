@@ -34,19 +34,16 @@ let userType = document.querySelectorAll('.input_log p'), userTypeInput = docume
 
 
 if (userType) {
-    let categoryInput = document.querySelector('.log_input_box select')
     userType.forEach((p, index) => {
         p.addEventListener('click', () => {
             if (index === 0) {
                 userTypeDiv.style.background = `linear-gradient(270deg, rgba(255, 255, 255, 0) 48.11%, rgba(236, 32, 41, 0.35) 100%)`
                 userTypeInput.value = false
-                categoryInput.style.display = 'none'
                 p.style.color = '#EC2029'
                 userType[1].style.color = '#000'
             } else {
                 userTypeDiv.style.background = `linear-gradient(90deg, rgba(255, 255, 255, 0) 48.11%, rgba(236, 32, 41, 0.35) 100%)`
                 userTypeInput.value = '1'
-                categoryInput.style.display = 'flex'
                 p.style.color = '#EC2029'
                 userType[0].style.color = '#000'
             }
@@ -72,6 +69,10 @@ let userFuncLink = document.querySelectorAll('.function_link p'), userFuncWindow
     typeFunc = document.querySelectorAll('.album_or_playlist p'), backBtn, nextBtn, listValue = {
         'photo': '', 'img': '', 'name': '', 'date': '', 'bio': '', 'listMusic': [], 'photo_for': '', 'type_list': false
     }
+
+let addTrack = document.querySelector('.absolute_btn_add_song'),
+    addTrackWindow = document.querySelector('.add_track_window'),
+    formAddTrack = document.querySelector('.add_track_window p')
 
 const listAlbum = [`<div class="album_or_playlist">
                     <p>Playlist</p>
@@ -217,6 +218,9 @@ if (addFuncWindow) {
         addFuncWindow.innerHTML = list[numberF]
         listF = list
         typeFunc = document.querySelectorAll('.album_or_playlist p')
+        addTrack = document.querySelector('.absolute_btn_add_song')
+        addTrackWindow = document.querySelector('.add_track_window')
+        formAddTrack = document.querySelector('.add_track_window p')
         backBtn = document.querySelector('.prev_btn')
         nextBtn = document.querySelector('.next_btn')
         pSelect()
@@ -470,6 +474,14 @@ if (addFuncWindow) {
                 }
             })
         })
+        if (addTrack) {
+            addTrack.addEventListener('click', () => {
+                addTrackWindow.style.display = 'flex'
+            })
+            formAddTrack.addEventListener('click', () => {
+                addTrackWindow.style.display = 'none'
+            })
+        }
     }
 
     let inputGeneral = document.getElementById('general_photo'),
@@ -481,17 +493,6 @@ if (addFuncWindow) {
     })
 
     pSelect()
-
-    let addTrack = document.querySelector('.absolute_btn_add_song'),
-        addTrackWindow = document.querySelector('.add_track_window'),
-        formAddTrack = document.querySelector('.add_track_window p')
-
-    addTrack.addEventListener('click', () => {
-        addTrackWindow.style.display = 'flex'
-    })
-    formAddTrack.addEventListener('click', () => {
-        addTrackWindow.style.display = 'none'
-    })
 
     let addTrackInput = document.querySelector('.add_track_input'),
         addTrackInputFile = document.getElementById('add_track')

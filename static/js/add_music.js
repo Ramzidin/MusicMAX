@@ -51,76 +51,76 @@ if (playlist_id) {
             }
         })
     })
-}
 
-function reloadFunc() {
-    location.reload()
-}
+    function reloadFunc() {
+        location.reload()
+    }
 
-function searchTrack(value) {
-    if (value) {
-        value.toLowerCase()
-        let total = songName.indexOf(songName.find(song => song === value)),
-            outputValue = document.querySelector('.search_result')
-        if (total != -1) {
-            let total_id = all_music[total]
-            total_id = total_id['id']
-            if (total_id in playlist['track_id']) {
-                outputValue.innerHTML = `
-                <div class="search_music_box">
-                <div class="track_info">
-                    <img src="${all_music[total].photo}" alt="">
+    function searchTrack(value) {
+        if (value) {
+            value.toLowerCase()
+            let total = songName.indexOf(songName.find(song => song === value)),
+                outputValue = document.querySelector('.search_result')
+            if (total != -1) {
+                let total_id = all_music[total]
+                total_id = total_id['id']
+                if (playlist['track_id'].indexOf(total_id) !== -1) {
+                    outputValue.innerHTML = `
+                    <div class="search_music_box">
+                    <div class="track_info">
+                        <img src="${all_music[total].photo}" alt="">
+                            <div class="track_name">
+                            <p>${all_music[total].name}</p>
+                            <text>${all_music[total].author}</text>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark" id="delete_music_btn" onclick="deleteTrackFunc_forAddPlaylist()" 
+                    style="opacity: 1;font-size: 50px;
+                            width: 55px;
+                            height: 55px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: black;
+                            font-weight: 400;
+                    "></i>
+                </div>
+                `
+                } else {
+                    outputValue.innerHTML = `<div class="search_music_box">
+                    <div class="track_info">
+                        <img src="${all_music[total].photo}" alt="">
                         <div class="track_name">
-                        <p>${all_music[total].name}</p>
-                        <text>${all_music[total].author}</text>
+                            <p>${all_music[total].name}</p>
+                            <text>${all_music[total].author}</text>
+                        </div>
                     </div>
-                </div>
-                <i class="fa-solid fa-xmark" id="delete_music_btn" onclick="deleteTrackFunc_forAddPlaylist()" 
-                style="opacity: 1;font-size: 50px;
-                        width: 55px;
-                        height: 55px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: black;
-                        font-weight: 400;
-                "></i>
-            </div>
-            `
+                    <i class="fa-solid fa-plus" id="add_music_btn" onclick="addTrackFunc_forAddPlaylist()" style="font-size: 50px; opacity: 1;"></i>
+                </div>`
+                }
             } else {
-                outputValue.innerHTML = `<div class="search_music_box">
-                <div class="track_info">
-                    <img src="${all_music[total].photo}" alt="">
-                    <div class="track_name">
-                        <p>${all_music[total].name}</p>
-                        <text>${all_music[total].author}</text>
-                    </div>
-                </div>
-                <i class="fa-solid fa-plus" id="add_music_btn" onclick="addTrackFunc_forAddPlaylist()" style="font-size: 50px; opacity: 1;"></i>
-            </div>`
+                outputValue.innerHTML = `<h1>No result</h1>`
             }
-        } else {
-            outputValue.innerHTML = `<h1>No result</h1>`
         }
     }
-}
 
-function deleteTrackFunc_forAddPlaylist() {
-    let name_song = document.querySelector('.search_music_box .track_name p'),
-        check_name = all_music.find(name => name.name === name_song),
-        forClear = document.querySelector('.search_result'),
-        searchInput = document.getElementById('search_input')
-    playlist['track_id'].splice(check_name.id, 1)
-    forClear.innerHTML = ''
-    searchInput.value = ''
-}
+    function deleteTrackFunc_forAddPlaylist() {
+        let name_song = document.querySelector('.search_music_box .track_name p'),
+            check_name = all_music.find(name => name.name === name_song),
+            forClear = document.querySelector('.search_result'),
+            searchInput = document.getElementById('search_input')
+        playlist['track_id'].splice(check_name.id, 1)
+        forClear.innerHTML = ''
+        searchInput.value = ''
+    }
 
-function addTrackFunc_forAddPlaylist() {
-    let name_song = document.querySelector('.search_music_box .track_name p'),
-        check_name = all_music.find(name => name.name === name_song.innerHTML),
-        forClear = document.querySelector('.search_result'),
-        searchInput = document.getElementById('search_input')
-    playlist['track_id'].push(check_name['id'])
-    forClear.innerHTML = ''
-    searchInput.value = ''
+    function addTrackFunc_forAddPlaylist() {
+        let name_song = document.querySelector('.search_music_box .track_name p'),
+            check_name = all_music.find(name => name.name === name_song.innerHTML),
+            forClear = document.querySelector('.search_result'),
+            searchInput = document.getElementById('search_input')
+        playlist['track_id'].push(check_name['id'])
+        forClear.innerHTML = ''
+        searchInput.value = ''
+    }
 }

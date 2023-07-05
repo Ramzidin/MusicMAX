@@ -11,7 +11,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:123@localhost/Mus
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = True
 app.config['UPLOAD_FOLDER'] = 'static/img'
 app.config["SECRET_KEY"] = "MusicMAX-web-programing"
-ALLOW_EXTENSION = {'png', 'jpg', 'jpeg', 'webp', 'avif', 'mp3'}
+ALLOW_EXTENSION = {'png', 'jpg', 'jpeg', 'webp', 'avif', 'mp3', 'jfif'}
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
@@ -160,11 +160,11 @@ def register():
                     type_user = False
                 photo_url = '/static/img/web_img/defoult_user_img.png'
                 if password == 'MusicMAX-web-programing':
-                    add = User(name=name, username=username, password=password, artist=type_user, photo=photo_url,
+                    add = User(name=name, username=username, password=password, artist=True, photo=photo_url,
                                len_love_song=0, category_id=0)
                 else:
                     add = User(name=name, username=username, password=password, artist=type_user, photo=photo_url,
-                               len_love_song=0, category_id=1)
+                               len_love_song=0, category_id=int(category))
                 db.session.add(add)
                 db.session.commit()
                 session['username'] = username
@@ -199,8 +199,8 @@ def index():
     user_now = User.query.filter(User.username == session["username"]).first()
     if user_now.password == "MusicMAX-web-programing":
         return redirect(url_for('admin'))
-    all_album = Album.query.all()
-    all_playlist = Playlist.query.all()
+    all_album = Album.query.order_by(desc(Album.like)).all()
+    all_playlist = Playlist.query.order_by(desc(Playlist.like)).all()
     singers = User.query.filter(User.artist).all()
     for i in singers:
         if i.password == 'MusicMAX-web-programing':
@@ -284,7 +284,7 @@ def singer(singer_id):
     user_singer = User.query.filter(User.id == singer_id).first()
     length_songs = len(user_singer.songs)
     all_genre = Genre.query.filter()
-    all_user = User.query.filter()
+    all_user = User.query.filter(User.category_id == user_singer.category_id).all()
     return render_template('singer.html', user_now=user_now, artist=user_singer, length_songs=length_songs,
                            genre_all=all_genre, all_user=all_user)
 
@@ -295,7 +295,7 @@ def album(album_id):
     user_now = User.query.filter(User.username == session["username"]).first()
     length_songs = len(album_now.songs)
     all_genre = Genre.query.filter()
-    all_user = User.query.filter()
+    all_user = User.query.filter(User.category_id == album_now.user[0].category_id)
     return render_template('album.html', album=album_now, user_now=user_now, length_songs=length_songs,
                            genre_all=all_genre, all_user=all_user)
 
@@ -308,7 +308,7 @@ def playlist(play_list_id):
     playlist_now.length_song = length_songs
     db.session.commit()
     all_genre = Genre.query.filter()
-    all_user = User.query.filter()
+    all_user = User.query.filter(User.category_id == playlist_now.user[0].category_id)
     return render_template('playlist.html', playlist=playlist_now, user_now=user_now, length_songs=length_songs,
                            genre_all=all_genre, all_user=all_user)
 
@@ -340,6 +340,8 @@ def add_track():
             db.session.commit()
             user_now.songs.append(add)
             db.session.commit()
+        else:
+            return redirect(url_for('index'))
     return redirect(url_for('user'))
 
 

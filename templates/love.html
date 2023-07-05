@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="li_other">
-                            <text style="width: 380px;text-align: center; color: #646464;">{{ song.album.name }}</text>
+                            <text style="width: 380px;text-align: center; color: #646464;">{{ song.album[0].name }}</text>
                             <text style="width: 300px;text-align: center;color: #646464;">{{ song.like }}</text>
                             <div class="heart">
                                 {% if song in user_now.song_like %}

@@ -140,10 +140,6 @@ header i {
     gap: 30px;
 }
 
-#category {
-    display: none;
-}
-
 .log_main {
     width: 100%;
     height: 100%;
@@ -763,6 +759,20 @@ header {
     align-items: flex-start;
 }
 
+.index_row {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    gap: 25px;
+}
+
+.index_row::-webkit-scrollbar {
+    width: 0;
+}
+
 li {
     display: flex;
     justify-content: space-between;
@@ -784,16 +794,23 @@ li {
     align-items: center;
 }
 
+.li_other text{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .li_other {
     gap: 57px;
 }
 
-/*@media only screen and(min-width: 1930px) {*/
-/*    .li_other {*/
-/*        gap: 35px;*/
-/*    }*/
+@media only screen and (min-width: 1920px) and (max-width: 1920px) {
+    .li_other {
+        gap: 35px;
+    }
 
-/*}*/
+}
 
 .li_info img {
     width: 60px;
@@ -897,6 +914,7 @@ li:hover i {
     justify-content: flex-start;
     align-items: flex-end;
     padding: 40px;
+    position: relative;
 }
 
 .album_banner_img img {
@@ -1574,6 +1592,22 @@ i.fa-plus {
     background: #fff;
 }
 
+.album_banner .like_heart {
+    position: absolute;
+    right: 45px;
+    left: unset;
+    bottom: 40px;
+    border-color: var(--color_primary);
+}
+
+.album_banner .like_heart:hover {
+    background: var(--color_primary);
+}
+
+.album_banner .like_heart:hover i {
+    color: white;
+}
+
 .absolute_add_song_box {
     opacity: 0;
     z-index: -1;
@@ -1612,6 +1646,10 @@ i.fa-plus {
     justify-content: flex-start;
     align-items: center;
     transition: .5s all ease;
+}
+
+.playlist_info .hover_for_delete_song_in_playlist{
+    color: var(--white);
 }
 
 .hover_for_delete_song_in_playlist:hover {

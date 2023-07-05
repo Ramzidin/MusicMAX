@@ -262,48 +262,55 @@
         </div>
         <div class="header_info">
             <div class="singer_album">
-                {% for singer in singers %}
-                    <a href="{{ url_for('singer', singer_id=singer.id) }}">
-                        <div class="playlist_box">
-                            <div class="playlist_img">
-                                <img src="{{ singer.photo }}" alt="{{ singer.username }}" style="border-radius: 50%">
+                <div class="index_row">
+                    {% for singer in singers %}
+                        <a href="{{ url_for('singer', singer_id=singer.id) }}">
+                            <div class="playlist_box">
+                                <div class="playlist_img">
+                                    <img src="{{ singer.photo }}" alt="{{ singer.username }}"
+                                         style="border-radius: 50%">
+                                </div>
+                                <div class="playlist_name">
+                                    {{ singer.name }}
+                                </div>
                             </div>
-                            <div class="playlist_name">
-                                {{ singer.name }}
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
             <div class="singer_album">
-                {% for playlist in all_pl %}
-                    <a href="{{ url_for('playlist', play_list_id=playlist.id) }}">
-                        <div class="playlist_box">
-                            <div class="playlist_img">
-                                <img src="{{ playlist.photo }}" alt="">
+                <div class="index_row">
+                    {% for playlist in all_pl %}
+                        <a href="{{ url_for('playlist', play_list_id=playlist.id) }}">
+                            <div class="playlist_box">
+                                <div class="playlist_img">
+                                    <img src="{{ playlist.photo }}" alt="">
+                                </div>
+                                <div class="album_name">
+                                    <p>{{ playlist.name }}</p>
+                                    <text style="font-size: 23px">{{ playlist.date }} • Playlist</text>
+                                </div>
                             </div>
-                            <div class="album_name">
-                                <p>{{ playlist.name }}</p>
-                                <text style="font-size: 23px">{{ playlist.date }} • Playlist</text>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
             <div class="singer_album">
-                {% for album in all_ab %}
-                    <a href="{{ url_for('album', album_id=album.id) }}">
-                        <div class="album_box">
-                            <div class="album_img">
-                                <img src="{{ album.photo }}" alt="">
+                <div class="index_row">
+                    {% for album in all_ab %}
+                        <a href="{{ url_for('album', album_id=album.id) }}">
+                            <div class="album_box">
+                                <div class="album_img">
+                                    <img src="{{ album.photo }}" alt="">
+                                </div>
+                                <div class="album_name">
+                                    <p>{{ album.name }}</p>
+                                    <text>{{ album.date }} • Album</text>
+                                </div>
                             </div>
-                            <div class="album_name">
-                                <p>{{ album.name }}</p>
-                                <text>{{ album.date }} • Album</text>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endblock %}

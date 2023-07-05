@@ -115,9 +115,9 @@
                                     <div class="for_playlist_div" style="width: 100%;color: white;font-size: 30px">
                                         <a href="{{ url_for('delete_playlist_song', p_id=playlist.id, s_id=song.id) }}"
                                            class="hover_for_delete_song_in_playlist">Delete</a>
-                                        <a href="{{ url_for('download', filename=song.url) }}">download</a>
                                     </div>
                                 {% endif %}
+                                <a href="{{ url_for('download', filename=song.url) }}" class="hover_for_delete_song_in_playlist" style="font-size: 30px;">Download</a>
                                 <div class="add_song_div" style="width: 100%;">
                                     {% if user_now.playlist %}
                                         {% for check_list in user_now.playlist %}
