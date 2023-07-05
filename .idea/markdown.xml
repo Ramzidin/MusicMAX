@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="MarkdownSettings">
-    <option name="customStylesheetText" value="html{&#10;    box-sizing: border-box;&#10;}&#10;&#10;*,*::after,*::befor{&#10;    box-sizing: inherit;&#10;}&#10;&#10;body{&#10;    margin: 0;&#10;    padding: 0;&#10;    width: 100%&#10;}&#10;" />
-    <option name="useCustomStylesheetText" value="true" />
-    <option name="verticalSplit" value="false" />
-  </component>
-</project>
